@@ -1,9 +1,17 @@
-from flask import Flask, render_template
-app=Flask(__name__)
+from flask import Flask, render_template, jsonify, request
+
+app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
+def home():
     return render_template('index.html')
 
-if __name__=='__main__':
+@app.route('/generate', methods=['POST'])
+def generate():
+    data = request.get_json()
+    prompt = data.get('prompt', '')
+    result = {"result": f"Generated content for: {prompt}"}
+    return jsonify(result)
+
+if __name__ == '__main__':
     app.run(debug=True)

@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./static/css/output.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,30 +13,42 @@
     <title>AI Content Generator</title>
   </head>
   <body class="bg-light p-3">
-
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8 text-center mb-4">
-          <h1 class="text-3xl font-bold underline mb-3">Generate your content here!</h1>
+          <h1 class="text-3xl font-bold underline mb-3">
+            Generate your content here!
+          </h1>
         </div>
 
         <div class="col-md-8">
           <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Prompt</span>
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Prompt</span
+            >
             <input
               type="text"
+              id="prompt"
               class="form-control"
               placeholder="Enter your topic or idea..."
               aria-label="AI prompt"
               aria-describedby="inputGroup-sizing-default"
             />
-            <button type="button" class="btn btn-dark">Generate</button>
+            <button
+              id="submitbtn"
+              onclick="populate()"
+              type="button"
+              class="btn btn-dark"
+            >
+              Generate
+            </button>
           </div>
         </div>
 
         <div class="col-md-8">
           <input
             type="text"
+            id="output"
             class="form-control"
             placeholder="Generated content will appear here..."
             aria-label="Generated content"
@@ -46,6 +57,27 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const populate = async () => {
+        const prompt = document.getElementById("prompt").value;
+
+        const response = await fetch("/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt }),
+        });
+
+        const data = await response.json();
+        document.getElementById("output").value = data.result;
+      };
+    </script>
   </body>
 </html>
