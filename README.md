@@ -8,6 +8,7 @@
   <img src="https://flask.palletsprojects.com/en/3.0.x/_images/flask-logo.png" alt="Flask" height="60"/>
 </p>
 
+
 # 🚀 AI Content Generator
 
 A simple web app that uses **Gemini API**, **LangChain**, **Python**, and **Flask** to generate content based on user prompts in real time.
