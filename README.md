@@ -24,45 +24,28 @@ Follow these steps to set up the project on your local machine:
 git clone https://github.com/your-username/your-repo.git
 cd your-repo
 2️⃣ Create & activate virtual environment
-bash
-Copy
-Edit
+
 python -m venv env
 Windows:
-
-bash
-Copy
-Edit
 .\env\Scripts\activate
-macOS/Linux:
 
-bash
-Copy
-Edit
+macOS/Linux:
 source env/bin/activate
+
 3️⃣ Install the dependencies
-bash
-Copy
-Edit
 pip install -r requirements.txt
+
 4️⃣ Install additional packages
-bash
-Copy
-Edit
 pip install langchain-google-genai flask python-dotenv
+
 5️⃣ Set up your .env file
 Create a .env file in the root directory and add your Google API key:
 
-env
-Copy
-Edit
-GOOGLE_API_KEY=your_google_api_key_here
+
+GEMINI_API_KEY=your_geminin_api_key_here
+
 ▶️ Running the Application
 Launch the Flask app:
-
-bash
-Copy
-Edit
 python app.py
 Then open your browser at http://127.0.0.1:5000 to start generating content!
 
