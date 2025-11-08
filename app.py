@@ -4,6 +4,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.schema import HumanMessage
 import os
 
+# Load your .env file
 load_dotenv()
 
 app = Flask(__name__)
@@ -19,13 +20,17 @@ def generate():
 
     google_api_key = os.getenv("GEMINI_API_KEY")
 
+    # Initialize Gemini model (must match the ID from ListModels)
     chat = ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",  
+        model="models/gemini-1.5-flash",
         google_api_key=google_api_key,
         temperature=0.7,
     )
 
+    # Send prompt to the model
     response = chat.invoke([HumanMessage(content=prompt)])
+
+    # Return generated text to frontend
     return jsonify({"result": response.content})
 
 if __name__ == '__main__':
